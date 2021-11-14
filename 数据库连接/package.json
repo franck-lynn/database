@@ -1,0 +1,11 @@
+{
+  "name": "mongodb-connect",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mongoose": "ts-node -r esm ./mongoose-connnect.ts"
+  },
+  "author": "",
+  "license": "ISC"
+}
