@@ -24,8 +24,7 @@
 import mongoose, {model, Schema, MongooseOptions, PopulatedDoc, Document, Query, Model} from "mongoose"
 const url = "mongodb://localhost:27017/test"
 // 连接数据库
-const connectionOption: MongooseOptions = {useUnifiedTopology: true}
-mongoose.connect(url, connectionOption, () => console.log("数据库连接成功"))
+mongoose.connect(url,  () => console.log("数据库连接成功"))
 // 错误信息, 绑定错误信息处理, 以便定位错误,
 mongoose.connection.on("error", console.error.bind(console, "mongoDB连接异常"))
 
@@ -34,7 +33,7 @@ interface IMovie {
     name: string
     director: string
     actor: PopulatedDoc<IActor & Document>
-    years: string
+    years: Date
 }
 interface IActor {
     name: string
