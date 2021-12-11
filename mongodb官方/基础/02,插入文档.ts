@@ -1,12 +1,12 @@
 // https://docs.mongodb.com/drivers/node/current/usage-examples/insertOne/
 import { MongoClient } from 'mongodb' 
 
-const url = "mongodb://127.0.0.1:27017"
-// const url = "mongodb://localhost:27017"
-// const url = "mongodb://localhost:27017/test?replicaSet=my_repl"
-// const url = "mongodb://localhost:27017/test?replicaSet=my_repl?retryWrites=true&w=majority"
+const uri = "mongodb://127.0.0.1:27017"
+// const uri = "mongodb://localhost:27017"
+// const uri = "mongodb://localhost:27017/test?replicaSet=my_repl"
+// const uri = "mongodb://localhost:27017/test?replicaSet=my_repl?retryWrites=true&w=majority"
 
-const client = new MongoClient(url)
+const client = new MongoClient(uri)
 const run = async () => {
     try {
         await client.connect()

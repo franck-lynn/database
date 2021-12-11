@@ -1,15 +1,15 @@
 import mongoose, {model, Schema, MongooseOptions} from "mongoose"
-const url = "mongodb://localhost:27017/test"
-// const url = "mongodb://localhost:27017/replicaSet=my_repl"
+const uri = "mongodb://localhost:27017/test"
+// const uri = "mongodb://localhost:27017/replicaSet=my_repl"
 
 // const main = async () => {
-//     await mongoose.connect(url)
+//     await mongoose.connect(uri)
 // }
 // main().catch(err => console.log(err))
 
 // 连接数据库
-// const connectionOption: MongooseOptions = {useNewUrlParser: true, useUnifiedTopology: true}
-mongoose.connect(url,  () => console.log("数据库连接成功"))
+// const connectionOption: MongooseOptions = {useNewuriParser: true, useUnifiedTopology: true}
+mongoose.connect(uri,  () => console.log("数据库连接成功"))
 // 错误信息, 绑定错误信息处理, 以便定位错误,
 mongoose.connection.on("error", console.error.bind(console, "mongoDB连接异常"))
 

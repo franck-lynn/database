@@ -1,6 +1,6 @@
 // https://docs.mongodb.com/drivers/node/current/quick-start/
 import {MongoClient} from "mongodb"
-// url 带上复制集, 数据库连接地址
+// uri 带上复制集, 数据库连接地址
 // const uri = "mongodb://localhost:27017/replicaSet=my_repl"
 // 也可以不带数据集
 const uri = "mongodb://localhost:27017" 

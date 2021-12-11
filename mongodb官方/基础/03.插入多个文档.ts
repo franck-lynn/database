@@ -1,7 +1,7 @@
 // https://docs.mongodb.com/drivers/node/current/usage-examples/insertMany/
 import {MongoClient} from "mongodb"
-const url = "mongodb://localhost:27017"
-const client = new MongoClient(url)
+const uri = "mongodb://localhost:27017"
+const client = new MongoClient(uri)
 
 // 插入多个文档的函数
 const run = async () => {

@@ -1,7 +1,7 @@
 // https://docs.mongodb.com/drivers/node/current/usage-examples/updateMany/
 import {MongoClient} from "mongodb"
-const url = "mongodb://localhost:27017"
-const client = new MongoClient(url)
+const uri = "mongodb://localhost:27017"
+const client = new MongoClient(uri)
 
 const run = async () => {
     try {

@@ -1,10 +1,10 @@
 import mongoose, {model, Schema, MongooseOptions} from "mongoose"
 
-const url = "mongodb://localhost:27017/test"
-// const url = "mongodb://localhost:27017"
+const uri = "mongodb://localhost:27017/test"
+// const uri = "mongodb://localhost:27017"
 // 连接数据库
-const connectionOption: MongooseOptions = {useNewUrlParser: true, useUnifiedTopology: true}
-mongoose.connect(url, connectionOption, () => console.log("数据库连接成功"))
+const connectionOption: MongooseOptions = {useNewuriParser: true, useUnifiedTopology: true}
+mongoose.connect(uri, connectionOption, () => console.log("数据库连接成功"))
 // 错误信息, 绑定错误信息处理, 以便定位错误,
 mongoose.connection.on("error", console.error.bind(console, "mongoDB连接异常"))
 

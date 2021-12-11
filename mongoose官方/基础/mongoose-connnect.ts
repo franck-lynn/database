@@ -1,10 +1,10 @@
 import mongoose = require('mongoose')
 import { ConnectOptions, Schema, model } from 'mongoose'
 
-const url = 'mongodb://localhost:27017/test?replicaSet=my_repl'
+const uri = 'mongodb://localhost:27017/test?replicaSet=my_repl'
 
 // const MONGOOSE_OPTIONS: ConnectOptions = {
-//     // useNewUrlParser: true,
+//     // useNewuriParser: true,
 //     // useUnifiedTopology: true,
 //     // useFindAndModify: false,
 //     useCreateIndex: true,
@@ -12,7 +12,7 @@ const url = 'mongodb://localhost:27017/test?replicaSet=my_repl'
 // }
 // const mongoose = new Mongoose()
 
-mongoose.connect(url, /*  MONGOOSE_OPTIONS,  */() => console.log('数据库连接成功!'))
+mongoose.connect(uri, /*  MONGOOSE_OPTIONS,  */() => console.log('数据库连接成功!'))
 mongoose.connection.on('error', console.error.bind(console, 'mongoDB连接异常'))
 
 const userSchema = new Schema({
