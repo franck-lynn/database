@@ -8,13 +8,13 @@ const run = async () => {
         await client.connect()
         
         const database = client.db('test')
-        const movies = database.collection('movies')
+        const users = database.collection('users')
         
         // 指定文档的字段, 年份字段, 并且匹配包含有 Barbra Streisand 字段的电影
         const fieldName = 'years'
         // 指定文档查询的选项
         const query = {directors: 'Barbra Streisand'}
-        const distinctValue = await movies.distinct(fieldName, query)
+        const distinctValue = await users.distinct(fieldName, query)
         console.log(distinctValue)
     } finally {
         client.close()

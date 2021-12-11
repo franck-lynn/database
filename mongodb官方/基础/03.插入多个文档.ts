@@ -11,7 +11,7 @@ const run = async () => {
         // 确定数据库
         const database = client.db("test")
         // 确定集合
-        const movies = database.collection("movies")
+        const users = database.collection("users")
         // 待插入的文档
         const docs = [
             {name: 'Red', town: 'Kanto'}, 
@@ -20,7 +20,7 @@ const run = async () => {
         ]
         // 这个选项防止插入的数据失败
         const options = {ordered: true}
-        const result = await movies.insertMany(docs, options)
+        const result = await users.insertMany(docs, options)
         // insert 没有 insertedCount 属性, insertMany 有
         console.log(`${result.insertedCount} 个文档被插入`)
     } finally {

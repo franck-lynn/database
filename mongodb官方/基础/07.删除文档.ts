@@ -8,10 +8,10 @@ const run = async () => {
     try{
         await client.connect()
         const database = client.db('test')
-        const movies = database.collection("movies")
+        const users = database.collection("users")
         // 查询要删除的文档
-        const query = {title: 'Sandcastles in the Sand'}
-        const result = await movies.deleteOne(query)
+        const query = {name: 'Leon'}
+        const result = await users.deleteOne(query)
         if(result.deletedCount === 1){
             console.dir('成功删除了一条文档')
         }else{

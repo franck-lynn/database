@@ -11,14 +11,15 @@ const run = async () => {
         // 2. 数据库
         const database = client.db('test')
         // 3. 集合
-        const movies = database.collection('movies')
+        const users = database.collection('users')
         // 4. 文档
-        const filter = {rated: 'G'}
+        const filter = {name: '赵敏'}
         const updateDoc = {
+            // 增加了这个字段
             $inc: {num_mflix_comments: 2}
         }
         // 5. 结果
-        const result = await movies.updateMany(filter, updateDoc)
+        const result = await users.updateMany(filter, updateDoc)
         // {
         //     acknowledged: true,
         //     modifiedCount: 2,

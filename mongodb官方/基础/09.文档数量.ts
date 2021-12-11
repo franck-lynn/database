@@ -8,14 +8,14 @@ const run = async () => {
     try {
         await client.connect()
         const database = client.db('test')
-        const movies  = database.collection('movies')
+        const users  = database.collection('users')
         
         // estimate 估算
-        const estimate = await movies.estimatedDocumentCount()
-        console.log(`估计movies集合中文档的数量是: ${estimate}`)
+        const estimate = await users.estimatedDocumentCount()
+        console.log(`估计users集合中文档的数量是: ${estimate}`)
         
         const query = {contries: "canada"}
-        const countCanada = await movies.countDocuments(query)
+        const countCanada = await users.countDocuments(query)
         console.log(`来自加拿大的电影数量: ${countCanada}`)
         console.log()
     } finally{

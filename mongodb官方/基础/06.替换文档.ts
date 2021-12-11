@@ -8,17 +8,17 @@ const run = async () => {
     try {
         await client.connect()
         const database = client.db("test")
-        const movies = database.collection("movies")
-        // 查找符合 name:Leon 条件的文档
-        const query = {name: "Leon"}
+        const users = database.collection("users")
+        // 查找符合 name:Blue 条件的文档
+        const query = {name: "Blue"}
         const options = {upsert: true}
         // 将符合条件的文档替换成下面的
         const replacement = {
-            title: "Sandcastles in the Sand",
-            plot: "Robin Sparkles mourns for a relationship with a mall rat at an idyllic beach.",
+            name: "令狐冲",
+            plot: "打印",
         }
         // replaceOne 是整个文档的替换, 并非只是更新一部分
-        const result = await movies.replaceOne(query, replacement, options)
+        const result = await users.replaceOne(query, replacement, options)
 
         if (result.modifiedCount === 0 && result.upsertedCount === 0) {
             console.log("集合内没有任何变化")

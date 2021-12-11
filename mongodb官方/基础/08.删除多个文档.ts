@@ -8,10 +8,10 @@ const run = async () => {
     try {
         await client.connect()
         const database = client.db("test")
-        const movies = database.collection("movies")
-        const query = {title: 'Santa Clays'}
+        const users = database.collection("users")
+        const query = {name: '赵敏'}
 
-        const result = movies.deleteMany(query)
+        const result = users.deleteMany(query)
         console.log("删除了 " + (await result).deletedCount + "条文档")
     }finally{
         client.close()
