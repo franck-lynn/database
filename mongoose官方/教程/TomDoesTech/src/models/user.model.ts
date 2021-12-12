@@ -26,7 +26,7 @@ userSchema.index({email: 1})
 
 // 虚拟方法
 userSchema.virtual("fullname").get(function (this: UserDocument){
-    return `${this.firstname} ${this.lastname}`
+    return `${this.firstname}${this.lastname}`
 })
 // 当用户注册时
 userSchema.pre("save", async function (this:UserDocument, next: (err?: CallbackError) => void) {

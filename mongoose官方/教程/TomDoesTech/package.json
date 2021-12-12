@@ -1,20 +1,19 @@
 {
-  "name": "mocha-ts",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "babel test --out-dir test/dist  --extensions .ts --config-file ./babel.config.json && mocha -r esm test/dist/user.service.test.js"
-  },
-  
-  "mocha": {
-    "require": [
-      "ts-node/register", 
-      "tsconfig-paths/register"
-    ], 
-    "ui": "bdd"
-  }, 
-  "author": "",
-  "license": "ISC"
+    "name": "mocha-ts",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha --require ts-node/register test/*.test.ts",
+        "dev": "mocha --require ts-node/register test/**/*.test.ts"
+    },
+    "mocha": {
+        "require": [
+            "ts-node/register",
+            "tsconfig-paths/register"
+        ],
+        "ui": "bdd"
+    },
+    "author": "",
+    "license": "ISC"
 }
