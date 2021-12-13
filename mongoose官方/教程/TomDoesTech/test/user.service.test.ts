@@ -60,7 +60,25 @@ describe("测试 user.service ", function () {
             })
         })
     })
+    
+    describe("虚拟属性", () => {
+        it("会返回全名", async () => {
+            await createUser(userPayload)
+            const user = await findUser({
+                email: userPayload.email,
+            }, {
+                lean: false
+            })
+            
+            expect(user?.fullname).to.be.equal(`${userPayload.firstname}${userPayload.lastname}`)
+        })
+    })
+    
+    
+    
 })
+
+
 
 after(async () => {
     mongoose.disconnect()
