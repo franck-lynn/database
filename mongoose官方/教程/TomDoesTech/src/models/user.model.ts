@@ -15,7 +15,7 @@ export interface UserDocument extends IUser, Document{
     comparePassword: (CandidatePassword: string) => Promise<boolean>
 }
 
-const userSchema = new Schema<IUser>({
+const userSchema = new Schema<UserDocument>({
     email: {type: String, required: true , unique: true},
     firstname: {type: String, required: true },
     lastname: {type: String, required: true },
