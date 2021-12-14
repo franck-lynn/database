@@ -1,5 +1,7 @@
 import { Schema, model } from "mongoose"
-interface IX {
+export interface IX {
+    // 可选与否可以不在这里定义, 
+    // 在 schema 中没有 required 属性的都是可选的
     name: string
     binary: Buffer
     living: boolean
