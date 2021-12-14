@@ -31,10 +31,8 @@ const xSchema = new Schema<IX>({
     integerOnly: {
         type: Number,
         get: (v: number): number => Math.round(v),
-        set: (v: number): void => {
-            Math.round(v)
-        },
-        alias: "i",
+        set: (v: number) => Math.round(v) ,
+        // alias: "i",
     },
     _someId: { type: Schema.Types.ObjectId },
     decimal: Schema.Types.Decimal128,

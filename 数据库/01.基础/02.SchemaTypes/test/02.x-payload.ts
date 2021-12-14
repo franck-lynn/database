@@ -1,7 +1,7 @@
 import { XModel, IX } from '../src/models/schema'
 
 const xPayload = new XModel({
-    name: "迪丽",
+    name: "迪丽", 
     binary: Buffer.from('runoob', 'ascii'),
     living: true,
     update: new Date(),

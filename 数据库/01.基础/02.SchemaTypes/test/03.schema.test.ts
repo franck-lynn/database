@@ -8,7 +8,9 @@ describe("测试 schema.ts 文件里定义的各种属性 ", function(){
             expect(typeof xPayload).to.be.equal('object')
             expect(xPayload.name).to.be.equal("迪丽")
             expect(xPayload.binary.toString()).to.be.equal("runoob")
-            expect(xPayload.update).to.be.equal(new Date())
+            expect(xPayload.integerOnly).to.be.equal(12)
+            
+             
         })
     })
 })
