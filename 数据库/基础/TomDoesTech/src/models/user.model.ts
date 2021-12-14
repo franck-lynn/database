@@ -10,7 +10,7 @@ export interface IUser {
 // Document 是一个类类型, 有构造函数, _id, __v, 等等这些属性
 export interface UserDocument extends IUser, Document{
     fullname: string
-    creaatedAt: Date
+    createdAt: Date
     updateAt: Date
     comparePassword: (CandidatePassword: string) => Promise<boolean>
 }

@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 import { createUser, findUser, loginUser, deleteAllUser } from "src/services/user.service"
-import User, { IUser } from "../src/models/user.model"
+import { IUser } from "../src/models/user.model"
 import { expect } from "chai"
 
 before(async () => {
