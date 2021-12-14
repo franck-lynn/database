@@ -1,4 +1,6 @@
 import { Schema, model } from "mongoose"
+
+
 export interface IX {
     // 可选与否可以不在这里定义, 
     // 在 schema 中没有 required 属性的都是可选的
@@ -43,11 +45,9 @@ const xSchema = new Schema<IX>({
     ofObjectId: [Schema.Types.ObjectId],
     ofArray: [[String]],
     nested: {
-        stuff: String,
+        stuff: {type: String, uppercase: true},
     },
 })
 
 const XModel = model<IX>("User", xSchema)
-
-
 export { XModel }

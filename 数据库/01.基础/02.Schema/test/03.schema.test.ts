@@ -1,6 +1,6 @@
 import { xPayload } from './02.x-payload'
 import { expect } from "chai"
-
+import { Schema, model } from "mongoose"
 describe("测试 schema.ts 文件里定义的各种属性 ", function(){
     
     describe("获取各种属性 ", function (){
@@ -10,8 +10,12 @@ describe("测试 schema.ts 文件里定义的各种属性 ", function(){
             expect(xPayload.binary.toString()).to.be.equal("runoob")
             expect(xPayload.integerOnly).to.be.equal(12)
             
-             
+            expect(xPayload.nested.stuff).to.be.equal('STUFF')
+            expect(xPayload.decimal) 
         })
     })
+    
+    
+    
 })
 
