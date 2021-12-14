@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose"
-
+import { ObjectId } from 'mongodb'
 
 export interface IX {
     // 可选与否可以不在这里定义, 
@@ -10,14 +10,15 @@ export interface IX {
     update: Date
     age: number
     integerOnly: number
-    _someId: Schema.Types.ObjectId
-    decimal: number
-    arr: Array<String>[]
-    ofString: [string]
-    ofNumber: [number]
-    ofMixed: [Schema.Types.Mixed]
-    ofObjectId: [Schema.Types.ObjectId]
-    ofArray: Array<Array<string>>[]
+    _someId: Schema.Types.ObjectId,
+    // _someId: ObjectId, // 不行, 有冲突
+    decimal: Schema.Types.Decimal128
+    arr: string[]
+    ofString: string[]
+    ofNumber: number[]
+    ofMixed: Schema.Types.Mixed[]
+    ofObjectId:  Schema.Types.ObjectId 
+    ofArray: string[][] // 二维数组
     nested: {
         stuff: string
     }
@@ -37,17 +38,20 @@ const xSchema = new Schema<IX>({
         // alias: "i",
     },
     _someId: { type: Schema.Types.ObjectId },
+    // _someId: { type: ObjectId }, // 不行, 有冲突
     decimal: Schema.Types.Decimal128,
     arr: { type: [String] },
     ofString: { type: [String] },
     ofNumber: { type: [Number] },
     ofMixed: [Schema.Types.Mixed],
-    ofObjectId: [Schema.Types.ObjectId],
+    ofObjectId: Schema.Types.ObjectId,
     ofArray: [[String]],
     nested: {
         stuff: {type: String, uppercase: true},
     },
 })
+
+// xSchema.index({name: 1})
 
 const XModel = model<IX>("User", xSchema)
 export { XModel }
