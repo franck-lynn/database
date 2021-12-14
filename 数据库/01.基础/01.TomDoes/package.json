@@ -1,0 +1,19 @@
+{
+    "name": "mocha-ts",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha --require ts-node/register test/*.test.ts",
+        "dev": "mocha --require ts-node/register test/**/*.test.ts"
+    },
+    "mocha": {
+        "require": [
+            "ts-node/register",
+            "tsconfig-paths/register"
+        ],
+        "ui": "bdd"
+    },
+    "author": "",
+    "license": "ISC"
+}
