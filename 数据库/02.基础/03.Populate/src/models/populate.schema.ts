@@ -6,7 +6,8 @@ export interface Parent {
     name?: string
 }
 const parentSchema = new Schema<Parent>({
-    child: {type: 'ObjectId', ref: "Child"},
+    //! 关联的是哪张表? ref 值得是表名称, 和 model( 里的参数一致 )
+    child: {type: 'ObjectId', ref: "User"},
     name: String
 })
 

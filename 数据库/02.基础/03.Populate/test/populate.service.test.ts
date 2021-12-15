@@ -1,7 +1,9 @@
-import mongoose from "mongoose"
-import { Schema, model, Document, Types } from "mongoose"
+import mongoose, { Schema, model, Document, Types }  from "mongoose"
 import { expect } from "chai"
 import { ParentModel, ChildModel, Child, Parent } from "../src/models/populate.schema"
+
+
+
 import {
     deleteAllParent,
     deleteAllChild,
@@ -20,14 +22,14 @@ after(async () => {
 })
 
 describe("测试聚合查询 populate ", function () {
-    this.afterAll(async () => {
-        await deleteAllChild()
-        await deleteAllParent()
-    })
-    this.afterEach(async () => {
-        await deleteAllChild()
-        await deleteAllParent()
-    })
+    // this.afterAll(async () => {
+    //     await deleteAllChild()
+    //     await deleteAllParent()
+    // })
+    // this.afterEach(async () => {
+    //     await deleteAllChild()
+    //     await deleteAllParent()
+    // })
 
     const childA: Child = {
         name: "childA",
@@ -62,7 +64,7 @@ describe("测试聚合查询 populate ", function () {
                 expect(parent.child).to.be.equal(childA._id)
             })
         })
-        
+
         describe("实例创建", function () {
             let childB: Child
             this.beforeAll(async () => {
@@ -78,5 +80,14 @@ describe("测试聚合查询 populate ", function () {
                 expect(parent.child).to.be.equal(childB._id)
             })
         })
+        
+        // describe("根据Parent 查询 child", function (){
+        //     it("将会返回聚合查询的结果", async () => {
+        //         const doc = await findParentAndChild(parentA.name!)
+        //         expect(doc.child).to.be.equal(parentA.name)
+        //     })
+        // })
+        
+        
     })
 })
