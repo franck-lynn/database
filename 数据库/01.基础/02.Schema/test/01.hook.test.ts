@@ -6,8 +6,6 @@ before(async () => {
     mongoose.connect(uri)
     mongoose.connection.on("error", console.error.bind(console, "mongoDB连接异常"))
 })
-
-
 after(async () => {
     mongoose.disconnect()
 })

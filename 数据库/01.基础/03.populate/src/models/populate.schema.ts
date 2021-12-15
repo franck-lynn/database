@@ -1,7 +1,8 @@
 import { Schema, model, Document, Types } from 'mongoose'
 
 export interface Parent {
-    child?: Types.ObjectId | Record<string, unknown>
+    _id?: Schema.Types.ObjectId
+    child?: Schema.Types.ObjectId | Record<string, unknown>
     name?: string
 }
 const parentSchema = new Schema<Parent>({
@@ -10,6 +11,7 @@ const parentSchema = new Schema<Parent>({
 })
 
 export interface Child {
+    _id?: Schema.Types.ObjectId
     name: string
 }
 const childSchema: Schema = new Schema<Child>({
@@ -18,7 +20,7 @@ const childSchema: Schema = new Schema<Child>({
 
 const ParentModel = model<Parent>("Company", parentSchema)
 const ChildModel = model<Child>("User", childSchema)
-
+ 
 export {ParentModel, ChildModel}
 
 
