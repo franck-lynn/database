@@ -2,7 +2,13 @@ import mongoose from "mongoose"
 import { Schema, model, Document, Types } from "mongoose"
 import { expect } from "chai"
 import { ParentModel, ChildModel, Child, Parent } from "../src/models/populate.schema"
-import { deleteAllParent, deleteAllChild, createParent, createChild, findParentAndChild } from "../src/services/populate,service"
+import {
+    deleteAllParent,
+    deleteAllChild,
+    createParent,
+    createChild,
+    findParentAndChild,
+} from "../src/services/populate,service"
 
 before(async () => {
     const uri = "mongodb://localhost:27017/test"
@@ -12,7 +18,6 @@ before(async () => {
 after(async () => {
     mongoose.disconnect()
 })
-
 
 describe("测试聚合查询 populate ", function () {
     this.afterAll(async () => {
@@ -25,35 +30,53 @@ describe("测试聚合查询 populate ", function () {
     })
 
     const childA: Child = {
-        name: "child",
+        name: "childA",
     }
     const childB = new ChildModel({
-        name: "child",
+        name: "childB",
     })
     const parentA: Parent = {
         // child: new Types.ObjectId(),
-        name: "parent",
+        name: "parentA",
     }
     const parentB = new ParentModel({
         // child: new Types.ObjectId(),
-        name: "parent",
+        name: "parentB",
     })
 
     describe("聚合查询的 createChild() 方法", function () {
-        let child: Child
-        
-        this.beforeAll(async () => {
-            child = await createChild(childA)
-        })
-        it("会生成一个 Child 实例", async () => {
-            expect(child.name).to.be.equal(childA.name)
-        })
+        describe("对象创建", function () {
+            let childA: Child
+            this.beforeAll(async () => {
+                // MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: null }
+                childA = await createChild(childA)
+            })
+            it("传入对象, 会生成一个 Child 实例", async () => {
+                expect(childA.name).to.be.equal(childA.name)
+            })
 
-        it("生成 Parent 的实例, parent.child 会与 childId 相等", async () => {
-            // 获取 child 的 _id
-            parentA.child  = child._id
-            const parent = await createParent(parentA)
-            expect(parent.child).to.be.equal(child._id)
+            it("传入对象, 生成 Parent 的实例, parent.child 会与 childId 相等", async () => {
+                // 获取 child 的 _id
+                parentA.child = childA._id
+                const parent = await createParent(parentA)
+                expect(parent.child).to.be.equal(childA._id)
+            })
+        })
+        
+        describe("实例创建", function () {
+            let childB: Child
+            this.beforeAll(async () => {
+                childB = await createChild(childB)
+            })
+            it("传入实例, 会生成一个 Child 实例", async () => {
+                expect(childB.name).to.be.equal(childB.name)
+            })
+            it("传入实例, 生成 Parent 的实例, parent.child 会与 childId 相等", async () => {
+                // 获取 child 的 _id
+                parentB.child = childB._id
+                const parent = await createParent(parentB)
+                expect(parent.child).to.be.equal(childB._id)
+            })
         })
     })
 })
