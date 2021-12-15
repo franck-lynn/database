@@ -10,6 +10,7 @@ import {
     createParent,
     createChild,
     findParentAndChild,
+    findChildById,
 } from "../src/services/populate,service"
 
 before(async () => {
@@ -22,10 +23,10 @@ after(async () => {
 })
 
 describe("测试聚合查询 populate ", function () {
-    // this.afterAll(async () => {
-    //     await deleteAllChild()
-    //     await deleteAllParent()
-    // })
+    this.afterAll(async () => {
+        await deleteAllChild()
+        await deleteAllParent()
+    })
     // this.afterEach(async () => {
     //     await deleteAllChild()
     //     await deleteAllParent()
@@ -81,12 +82,15 @@ describe("测试聚合查询 populate ", function () {
             })
         })
         
-        // describe("根据Parent 查询 child", function (){
-        //     it("将会返回聚合查询的结果", async () => {
-        //         const doc = await findParentAndChild(parentA.name!)
-        //         expect(doc.child).to.be.equal(parentA.name)
-        //     })
-        // })
+        describe("根据Parent 查询 child", function (){
+            it("将会返回聚合查询的结果", async () => {
+                const doc = await findParentAndChild(parentA.name!)
+                expect(doc.name).to.be.equal(parentA.name)
+                const childId =  (doc.child as Child)._id as Schema.Types.ObjectId
+                const child = await findChildById(childId)
+                expect((doc.child as Child)._id).to.be.deep.equal(child!._id)
+            })
+        })
         
         
     })
