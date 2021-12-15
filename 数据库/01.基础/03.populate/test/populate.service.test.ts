@@ -45,11 +45,11 @@ describe("测试聚合查询 populate ", function () {
         this.beforeAll(async () => {
             child = await createChild(childA)
         })
-        it("生成 Child 实例", async () => {
+        it("会生成一个 Child 实例", async () => {
             expect(child.name).to.be.equal(childA.name)
         })
 
-        it("生成 Parent 的实例", async () => {
+        it("生成 Parent 的实例, parent.child 会与 childId 相等", async () => {
             // 获取 child 的 _id
             parentA.child  = child._id
             const parent = await createParent(parentA)
