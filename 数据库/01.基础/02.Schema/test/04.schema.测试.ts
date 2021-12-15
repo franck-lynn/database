@@ -1,4 +1,4 @@
-import { xPayload } from './02.x-payload'
+import { xxxPayload, xxxObject } from './02.x-payload'
 
 
 // console.log(
@@ -8,9 +8,9 @@ import { xPayload } from './02.x-payload'
 console.log(
     // xPayload.name,
     // xPayload.binary.toString(),
-    xPayload.decimal, "\n",
-    xPayload.nested.stuff, "\n",
-    xPayload.ofString, "\n",
-    xPayload._someId, "\n",
-    xPayload.ofObjectId
+    xxxPayload.decimal, "\n",
+    xxxPayload.nested.stuff, "\n",
+    xxxPayload.ofString, "\n",
+    xxxPayload._someId, "\n",
+    xxxPayload.ofObjectId
 )

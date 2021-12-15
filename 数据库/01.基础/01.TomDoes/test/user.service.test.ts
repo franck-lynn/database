@@ -16,6 +16,7 @@ describe("测试 user.service ", function () {
     this.afterEach(async () => {
         await deleteAllUser()
     })
+    
     const userPayload: IUser = {
         firstname: "Jane",
         lastname: "Doe",
