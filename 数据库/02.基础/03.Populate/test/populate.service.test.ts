@@ -1,8 +1,7 @@
 import mongoose, { Schema, model, Document, Types }  from "mongoose"
+import { ObjectId } from 'mongodb'
 import { expect } from "chai"
 import { ParentModel, ChildModel, Child, Parent } from "../src/models/populate.schema"
-
-
 
 import {
     deleteAllParent,
@@ -27,19 +26,18 @@ describe("测试聚合查询 populate ", function () {
         await deleteAllChild()
         await deleteAllParent()
     })
-    // this.afterEach(async () => {
-    //     await deleteAllChild()
-    //     await deleteAllParent()
-    // })
+
 
     const childA: Child = {
+        // _id:  new ObjectId,
         name: "childA",
     }
     const childB = new ChildModel({
+        // _id: new Types.ObjectId,
         name: "childB",
     })
     const parentA: Parent = {
-        // child: new Types.ObjectId(),
+        // child: new Types.ObjectId,
         name: "parentA",
     }
     const parentB = new ParentModel({
@@ -49,36 +47,33 @@ describe("测试聚合查询 populate ", function () {
 
     describe("聚合查询的 createChild() 方法", function () {
         describe("对象创建", function () {
-            let childA: Child
+            let childAA: Child
+            let childBB: Child
             this.beforeAll(async () => {
-                // MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: null }
-                childA = await createChild(childA)
+                //! MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: null }
+                //! 出现这个错误是之前表设置了name唯一, 删除表重建一下就好了
+                childAA = await createChild(childA)
+                childBB = await createChild(childB)
             })
             it("传入对象, 会生成一个 Child 实例", async () => {
-                expect(childA.name).to.be.equal(childA.name)
+                expect(childAA.name).to.be.equal(childA.name)
+            })
+            it("传入实例, 会生成一个 Child 实例", async () => {
+                expect(childBB.name).to.be.equal(childB.name)
             })
 
             it("传入对象, 生成 Parent 的实例, parent.child 会与 childId 相等", async () => {
-                // 获取 child 的 _id
-                parentA.child = childA._id
+                //! childAA 是生成数据库是的文档对象, 获取 childAA 的 _id
+                parentA.child = childAA._id
+                //! 生成一个 parent 文档
                 const parent = await createParent(parentA)
-                expect(parent.child).to.be.equal(childA._id)
+                expect(parent.child).to.be.equal(childAA._id)
             })
-        })
-
-        describe("实例创建", function () {
-            let childB: Child
-            this.beforeAll(async () => {
-                childB = await createChild(childB)
-            })
-            it("传入实例, 会生成一个 Child 实例", async () => {
-                expect(childB.name).to.be.equal(childB.name)
-            })
+            
             it("传入实例, 生成 Parent 的实例, parent.child 会与 childId 相等", async () => {
-                // 获取 child 的 _id
-                parentB.child = childB._id
+                parentB.child = childBB._id
                 const parent = await createParent(parentB)
-                expect(parent.child).to.be.equal(childB._id)
+                expect(parent.child).to.be.equal(childBB._id)
             })
         })
         

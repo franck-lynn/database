@@ -11,16 +11,18 @@ interface IUser {
 }
 //! 定义schema
 const userSchema = new Schema<IUser>({
-    name: {type: String}
+    // _id: { type: Schema.Types.ObjectId },
+    name: { type: String },
 })
 //! 定义 model
 const User = model("User", userSchema)
 
 // 生成数据库
 const run1 = async () => {
-    const u = {
-        name: "用户名AAA"
+    const u: IUser = {
+        // _id: new Types.ObjectId,
+        name: "用户名AAA",
     }
     await User.create(u)
 }
- run1()
+run1()

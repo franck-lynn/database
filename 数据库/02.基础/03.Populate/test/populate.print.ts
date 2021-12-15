@@ -20,6 +20,5 @@ const run = async() => {
     const id = (rs.child as Child)._id as Schema.Types.ObjectId
     const child = await findChildById(id)
     console.log(child?._id)
-    
 }
 run()
