@@ -5,10 +5,13 @@ const deleteAllXxx = async () => {
     return XxxModel.deleteMany({})
 }
 
-const createXxxA = async (input: AnyObject | AnyKeys<IXxx> ) => {
+const createXxx = async (input: AnyObject | AnyKeys<IXxx> ) => {
     return XxxModel.create(input)
 }
 
+const findXxx = async(query: FilterQuery<IXxx>, options: QueryOptions = { lean: true }) => {
+    return XxxModel.findOne(query, null, options)
+}
 
-export {createXxxA, deleteAllXxx}
+export {createXxx, deleteAllXxx, findXxx}
 
